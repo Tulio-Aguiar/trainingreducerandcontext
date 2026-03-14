@@ -131,9 +131,83 @@
       padding: 60px 48px;
     }
 
+    /* ── MOBILE HEADER ── */
+    .mobile-header {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 52px;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      z-index: 200;
+    }
+
+    .mobile-header-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .mobile-menu-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text2);
+      cursor: pointer;
+      padding: 6px 10px;
+      font-size: 16px;
+      line-height: 1;
+      transition: all 0.15s;
+    }
+
+    .mobile-menu-btn:hover { background: var(--bg3); color: var(--text); }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 99;
+    }
+
+    .sidebar-overlay.open { display: block; }
+
     @media (max-width: 900px) {
-      .sidebar { display: none; }
-      .main { margin-left: 0; padding: 30px 20px; }
+      .mobile-header { display: flex; }
+      .main { margin-left: 0; padding: 72px 20px 30px; }
+
+      .sidebar {
+        display: flex;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+        z-index: 100;
+      }
+
+      .sidebar.open { transform: translateX(0); }
+    }
+
+    .diagram { overflow-x: auto; }
+
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 24px 0;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .table-wrapper .compare-table {
+      margin: 0;
+      border-radius: 0;
+      border: none;
+      min-width: 520px;
+    }
+
+    @media (max-width: 600px) {
+      .section-title { font-size: 1.25rem; }
+      .hero h1 { font-size: 1.8rem; }
     }
 
     /* ── HERO ── */
@@ -672,8 +746,15 @@
 </head>
 <body>
 
+<!-- ════════════════ MOBILE HEADER ════════════════ -->
+<div class="mobile-header">
+  <span class="mobile-header-title">🌊 Tailwind CSS</span>
+  <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Abrir menu">☰</button>
+</div>
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeMobileMenu()"></div>
+
 <!-- ════════════════ SIDEBAR ════════════════ -->
-<nav class="sidebar">
+<nav class="sidebar" id="sidebar">
   <div class="sidebar-brand">
     <a href="index.html" class="sidebar-back">← Início</a>
     <div class="sidebar-title">🌊 Tailwind CSS</div>
@@ -760,6 +841,7 @@
 
     <h3 style="font-size:1rem;font-weight:600;color:var(--text);margin:24px 0 12px;">Comparação: CSS tradicional vs CSS-in-JS vs Tailwind</h3>
 
+    <div class="table-wrapper">
     <table class="compare-table">
       <thead>
         <tr>
@@ -786,6 +868,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
 
     <h3 style="font-size:1rem;font-weight:600;color:var(--text);margin:24px 0 12px;">Vantagens reais</h3>
 
@@ -2484,6 +2567,23 @@ export default function Dashboard() {
 
 <script>
   hljs.highlightAll()
+
+  function toggleMobileMenu() {
+    document.getElementById('sidebar').classList.toggle('open')
+    document.getElementById('sidebar-overlay').classList.toggle('open')
+  }
+
+  function closeMobileMenu() {
+    document.getElementById('sidebar').classList.remove('open')
+    document.getElementById('sidebar-overlay').classList.remove('open')
+  }
+
+  document.querySelectorAll('.sidebar-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 900) closeMobileMenu()
+    })
+  })
+
 
   function copyCode(btn) {
     const pre = btn.closest('.code-block').querySelector('pre')
