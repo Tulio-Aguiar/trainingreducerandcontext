@@ -20,6 +20,8 @@
       --context: #a78bfa;
       --reducer: #34d399;
       --accent: #f97316;
+      --css: #f97316;
+      --tailwind: #38bdf8;
     }
 
     body {
@@ -69,7 +71,7 @@
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 24px;
       width: 100%;
-      max-width: 800px;
+      max-width: 1200px;
     }
 
     .card {
@@ -96,6 +98,12 @@
     .card.reducer { border-top: 3px solid var(--reducer); }
     .card.reducer:hover { border-color: var(--reducer); box-shadow: 0 20px 60px rgba(52,211,153,0.15); }
 
+    .card.css { border-top: 3px solid var(--css); }
+    .card.css:hover { border-color: var(--css); box-shadow: 0 20px 60px rgba(249,115,22,0.15); }
+
+    .card.tailwind { border-top: 3px solid var(--tailwind); }
+    .card.tailwind:hover { border-color: var(--tailwind); box-shadow: 0 20px 60px rgba(56,189,248,0.15); }
+
     .card-icon {
       font-size: 2.4rem;
     }
@@ -113,6 +121,8 @@
 
     .card.context .card-badge { background: rgba(167,139,250,0.15); color: var(--context); }
     .card.reducer .card-badge { background: rgba(52,211,153,0.15); color: var(--reducer); }
+    .card.css .card-badge { background: rgba(249,115,22,0.15); color: var(--css); }
+    .card.tailwind .card-badge { background: rgba(56,189,248,0.15); color: var(--tailwind); }
 
     .card h2 {
       font-size: 1.4rem;
@@ -153,6 +163,8 @@
 
     .card.context .card-cta { color: var(--context); }
     .card.reducer .card-cta { color: var(--reducer); }
+    .card.css .card-cta { color: var(--css); }
+    .card.tailwind .card-cta { color: var(--tailwind); }
 
     .footer {
       margin-top: 80px;
@@ -202,7 +214,7 @@
   <h1>Dominando <span>Estado</span> em React</h1>
 
   <p class="subtitle">
-    Dois módulos de treinamento construídos para quem está voltando ao ecossistema React depois de um tempo.
+    Quatro módulos de treinamento: estado React, CSS moderno e Tailwind.
     Exemplos reais, progressão deliberada, sem atalhos.
   </p>
 
@@ -246,6 +258,43 @@
         <span class="topic-tag">action types</span>
         <span class="topic-tag">immer pattern</span>
         <span class="topic-tag">context + reducer</span>
+      </div>
+      <div class="card-cta">Entrar no módulo →</div>
+    </a>
+
+    <a class="card css" href="css-moderno.html">
+      <div class="card-icon">🎨</div>
+      <span class="card-badge">Módulo 03</span>
+      <h2>CSS Moderno 2026</h2>
+      <p>
+        O que realmente mudou no CSS. Container Queries, <code style="font-family:monospace;font-size:0.85em">:has()</code>,
+        Cascade Layers, <code style="font-family:monospace;font-size:0.85em">@property</code> e
+        Scroll-Driven Animations no baseline estável.
+      </p>
+      <div class="card-topics">
+        <span class="topic-tag">@layer</span>
+        <span class="topic-tag">container queries</span>
+        <span class="topic-tag">:has()</span>
+        <span class="topic-tag">@property</span>
+        <span class="topic-tag">scroll-driven</span>
+      </div>
+      <div class="card-cta">Entrar no módulo →</div>
+    </a>
+
+    <a class="card tailwind" href="tailwind.html">
+      <div class="card-icon">🌊</div>
+      <span class="card-badge">Módulo 04</span>
+      <h2>Tailwind CSS</h2>
+      <p>
+        Do utility-first ao avançado. Responsividade, dark mode, estados,
+        <code style="font-family:monospace;font-size:0.85em">@apply</code>, config customizado, CVA e performance.
+      </p>
+      <div class="card-topics">
+        <span class="topic-tag">utility-first</span>
+        <span class="topic-tag">responsivo</span>
+        <span class="topic-tag">dark mode</span>
+        <span class="topic-tag">CVA</span>
+        <span class="topic-tag">JIT</span>
       </div>
       <div class="card-cta">Entrar no módulo →</div>
     </a>
